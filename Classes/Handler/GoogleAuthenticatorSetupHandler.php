@@ -58,8 +58,11 @@ class GoogleAuthenticatorSetupHandler
     /*─────────────────────────────────────────────────────────────────────────────*\
             Methods
     \*─────────────────────────────────────────────────────────────────────────────*/
-    public function __construct(ObjectManagerInterface $objectManager, Dispatcher $dispatcher)
+    public function __construct(ObjectManagerInterface $objectManager, Dispatcher $dispatcher = null)
     {
+        if ($dispatcher === null) {
+            $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(Dispatcher::class);
+        }
         $this->objectManager = $objectManager;
         $this->dispatcher = $dispatcher;
     }
